@@ -165,3 +165,29 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ]
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'detailed': {
+            'format': '[{asctime}] {levelname} {module}.{funcName}:{lineno} - {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'ocr_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'ocr.log'),
+            'formatter': 'detailed',
+        },
+    },
+    'loggers': {
+        'ocr': {
+            'handlers': ['ocr_file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}
